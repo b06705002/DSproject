@@ -1,38 +1,63 @@
+@import '~antd/dist/antd.css';
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  margin: auto;
+}
+
+.App-title {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  color: snow;
+  font-size: 3em;
+  margin: auto;
 }
 
-.App-link {
-  color: #61dafb;
+.App-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 3em;
+  color: snow;
+  margin: auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.named {
+  background-color: red;
+  border-color: red;
+}
+
+.named:hover {
+  background-color: orangered;
+  border-color: orangered;
+}
+
+.named:focus {
+  background-color: orangered;
+  border-color: orangered;
+}
+
+.anonymous {
+  background-color: orange;
+  border-color: orange;
+}
+
+.anonymous:hover {
+  background-color: gold;
+  border-color: gold;
+}
+
+.anonymous:focus {
+  background-color: gold;
+  border-color: gold;
 }
