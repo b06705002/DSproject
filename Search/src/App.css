@@ -31,33 +31,3 @@
   color: snow;
   margin: auto;
 }
-
-.named {
-  background-color: red;
-  border-color: red;
-}
-
-.named:hover {
-  background-color: orangered;
-  border-color: orangered;
-}
-
-.named:focus {
-  background-color: orangered;
-  border-color: orangered;
-}
-
-.anonymous {
-  background-color: orange;
-  border-color: orange;
-}
-
-.anonymous:hover {
-  background-color: gold;
-  border-color: gold;
-}
-
-.anonymous:focus {
-  background-color: gold;
-  border-color: gold;
-}
