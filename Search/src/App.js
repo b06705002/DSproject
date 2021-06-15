@@ -1,7 +1,16 @@
 import './App.css';
-import { Form, Input, Button, Modal, message, DatePicker, Select } from 'antd';
+import { Form, Input, Button, Modal, message, DatePicker, Select, Upload } from 'antd';
 import React, { useState } from 'react';
+import { UploadOutlined } from '@ant-design/icons';
 import { uploadNamed, uploadAnonymous } from './axios';
+
+const normFile = (e) => {
+  console.log('Upload event:', e);
+  if (Array.isArray(e)) {
+    return e;
+  }
+  return e && e.fileList;
+};
 
 const CollectionCreateFormNamed = ({ visible, onCreate, onCancel }) => {
   const [form] = Form.useForm();
@@ -37,8 +46,10 @@ const CollectionCreateFormNamed = ({ visible, onCreate, onCancel }) => {
         <Form.Item name="content" label="舉報內容(概述即可)">
           <Input />
         </Form.Item>
-        <Form.Item name="evidence" label="舉報材料連結" rules={[{required: true, message: '請附上舉報連結!',},]}>
-          <Input />
+        <Form.Item name="evidence" label="舉報材料" valuePropName="fileList" getValueFromEvent={normFile} rules={[{required: true, message: '請附上舉報材料!',},]}>
+          <Upload name="logo" action="/upload.do" listType="picture">
+            <Button icon={<UploadOutlined />}>點此上傳</Button>
+          </Upload>
         </Form.Item>
       </Form>
     </Modal>
@@ -73,8 +84,10 @@ const CollectionCreateFormAnonymous = ({ visible, onCreate, onCancel }) => {
         <Form.Item name="content" label="舉報內容(概述即可)">
           <Input />
         </Form.Item>
-        <Form.Item name="evidence" label="舉報材料連結" rules={[{required: true, message: '請附上舉報連結!',},]}>
-          <Input />
+        <Form.Item name="evidence" label="舉報材料" valuePropName="fileList" getValueFromEvent={normFile} rules={[{required: true, message: '請附上舉報材料!',},]}>
+          <Upload name="logo" action="/upload.do" listType="picture">
+            <Button icon={<UploadOutlined />}>點此上傳</Button>
+          </Upload>
         </Form.Item>
       </Form>
     </Modal>
