@@ -43,7 +43,7 @@ const CollectionCreateFormNamed = ({ visible, onCreate, onCancel }) => {
             <Select.Option value="others">其他</Select.Option>
           </Select>
         </Form.Item>
-        <Form.Item name="content" label="舉被內容(概述即可)">
+        <Form.Item name="content" label="舉報內容(概述即可)">
           <Input />
         </Form.Item>
         <Form.Item name="evidence" label="舉報材料" valuePropName="fileList" getValueFromEvent={normFile} rules={[{required: true, message: '請附上舉報材料!',},]}>
@@ -81,7 +81,7 @@ const CollectionCreateFormAnonymous = ({ visible, onCreate, onCancel }) => {
             <Select.Option value="others">其他</Select.Option>
           </Select>
         </Form.Item>
-        <Form.Item name="content" label="舉被內容(概述即可)">
+        <Form.Item name="content" label="舉報內容(概述即可)">
           <Input />
         </Form.Item>
         <Form.Item name="evidence" label="舉報材料" valuePropName="fileList" getValueFromEvent={normFile} rules={[{required: true, message: '請附上舉報材料!',},]}>
