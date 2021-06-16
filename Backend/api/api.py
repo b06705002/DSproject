@@ -68,7 +68,7 @@ def query_search():
     else:
         Type_Query = " type = \'" + Type + "\'"
 
-    if StartDate is not "":
+    if StartDate != "":
         StartDate = StartDate[:12] + "00:00:00"
         EndDate = EndDate[:12] + "23:59:59"
         START = datetime.strptime(StartDate, '%b %d %Y %H:%M:%S').strftime('%Y-%m-%d %H:%M:%S')
@@ -76,10 +76,10 @@ def query_search():
 
         Date_Query = " AND date BETWEEN \'" + START + "\' AND \'" + END + "\'" 
 
-    if Person is not "":
+    if Person != "":
         Person_Query = " AND person = \'" + Person + "\'"
 
-    if Mail is not "":
+    if Mail != "":
         Mail_Query = " AND reporter_email = \'" + Mail + "\'" 
 
 

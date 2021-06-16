@@ -41,7 +41,7 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel, setSearch }) => {
     );
 };
 
-const Search = ({ setSearch }) => {
+const Search = ({ setSearch, setData }) => {
 
     const [visible, setVisible] = useState(false);
 
@@ -55,9 +55,10 @@ const Search = ({ setSearch }) => {
 
     const onCreate = async (values) => {
         const res = await uploadSearch(values);
-        if (res === 'failure') {
+        if (res.msg === 'failure') {
           error()
         } else {
+          setData(res.data)
           success()
         }
         setVisible(false);

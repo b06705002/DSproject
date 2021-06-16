@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const uploadNamed = (values) => {
+const uploadNamed = async (values) => {
     
     let Reporter = values.reporter
     let Mail = values.reporterMail
@@ -13,28 +13,45 @@ const uploadNamed = (values) => {
     if(values.content !== null && values.content !== ""){
         Content = values.content
     }
-    axios.post('http://127.0.0.1:8000/query_result', {
-        Reporter: Reporter,
-        Mail: Mail,
-        Person: Person,
-        Date: Date,
-        Type: Type,
-        Content: Content,
-        Evidence: Evidence
-    })
-    .then((response) => {
-        //發送請求成功時
-        var status = response.data.status;
-        console.log(status)
-        return('success')
-      })
-      .catch((error) => {
-        //發送請求失敗時
-        return('fail')
-      });
+    // axios.post('http://127.0.0.1:8000/query_result', {
+    //     Reporter: Reporter,
+    //     Mail: Mail,
+    //     Person: Person,
+    //     Date: Date,
+    //     Type: Type,
+    //     Content: Content,
+    //     Evidence: Evidence
+    // })
+    // .then((response) => {
+    //     //發送請求成功時
+    //     const status = response.data.status;
+    //     console.log(status)
+    //     return('success')
+    //   })
+    //   .catch((error) => {
+    //     //發送請求失敗時
+    //     return('fail')
+    //   });
+    try {
+        const response = await axios.post('http://127.0.0.1:8000/query_result', {
+            Reporter: Reporter,
+            Mail: Mail,
+            Person: Person,
+            Date: Date,
+            Type: Type,
+            Content: Content,
+            Evidence: Evidence
+        })
+        if (response.data.status === 'Success'){
+          return('success')
+        }
+        return('failure')
+    } catch (err) {
+        return('failure')
+    }
 }
 
-const uploadAnonymous = (values) => {
+const uploadAnonymous = async (values) => {
     let Reporter = ""
     let Mail = ""
     let Person = values.reportedPerson
@@ -46,25 +63,42 @@ const uploadAnonymous = (values) => {
     if(values.content !== null && values.content !== ""){
         Content = values.content
     }
-    axios.post('http://127.0.0.1:8000/query_result', {
-        Reporter: Reporter,
-        Mail: Mail,
-        Person: Person,
-        Date: Date,
-        Type: Type,
-        Content: Content,
-        Evidence: Evidence
-    })
-    .then((response) => {
-        //發送請求成功時
-        var status = response.data.status;
-        console.log(status)
-        return('success')
+    // axios.post('http://127.0.0.1:8000/query_result', {
+    //     Reporter: Reporter,
+    //     Mail: Mail,
+    //     Person: Person,
+    //     Date: Date,
+    //     Type: Type,
+    //     Content: Content,
+    //     Evidence: Evidence
+    // })
+    // .then((response) => {
+    //     //發送請求成功時
+    //     const status = response.data.status;
+    //     console.log(status)
+    //     return('success')
+    //   })
+    //   .catch((error) => {
+    //     //發送請求失敗時
+    //     return('fail')
+    //   });
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/query_result', {
+          Reporter: Reporter,
+          Mail: Mail,
+          Person: Person,
+          Date: Date,
+          Type: Type,
+          Content: Content,
+          Evidence: Evidence
       })
-      .catch((error) => {
-        //發送請求失敗時
-        return('fail')
-      });
+      if (response.data.status === 'Success'){
+        return('success')
+      }
+      return('failure')
+  } catch (err) {
+      return('failure')
+  }
 }
 
 export { uploadNamed, uploadAnonymous }
