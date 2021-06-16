@@ -53,19 +53,44 @@ const Search = ({ setSearch, setData }) => {
         message.success('發送成功');
     };
 
+    const changeData = (data) => {
+        const listData = [];
+            for (let i=0; i<data.length; i++) {
+                let reporter = data[i].Reporter;
+                let email = data[i].Email;
+                if (reporter === "") {
+                  reporter = "無"
+                }
+                if (email === "") {
+                  email = "無"
+                }
+                listData.push({
+                    Content: data[i].Content,
+                    Date: data[i].Date,
+                    Email: email,
+                    Evidence: data[i].Evidence,
+                    Person: data[i].Person,
+                    Reporter: reporter,
+                    Type: data[i].Type,
+                    num: i
+                });
+            }
+        setData(listData)
+    }
+
     const onCreate = async (values) => {
         const res = await uploadSearch(values);
         if (res.msg === 'failure') {
           error()
         } else {
-          setData(res.data)
+          changeData(res.data)
           success()
         }
         setVisible(false);
     };
 
     return (
-        <>
+        <div className="App">
             <div className="App-title">違法和不良信息查詢平台</div>
             <div className="App-main">
                 <div>
@@ -73,7 +98,7 @@ const Search = ({ setSearch, setData }) => {
                     <CollectionCreateForm visible={visible} onCreate={onCreate} onCancel={() => {setVisible(false);}} setSearch={setSearch} />
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 

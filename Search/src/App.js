@@ -6,14 +6,14 @@ import Search from './container/Search';
 const App = () => {
 
   const [search, setSearch] = useState(false);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
 
   return (
-    <div className="App">
-      { search ? (<Result data={data}/>) 
+    <>
+      { search ? (<Result data={data} setSearch={setSearch} setData={setData}/>) 
         : 
         (<Search setSearch={setSearch} setData={setData}/>)}
-    </div>
+    </>
   );
 }
 
