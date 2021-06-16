@@ -1,7 +1,7 @@
 Flask==1.1.2
 flask-cors
 google-cloud-storage
-mysql-connector
+mysql-connector-python == 8.0.25
 
 
 # pip install -r requirements.txt
