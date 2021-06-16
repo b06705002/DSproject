@@ -33,7 +33,7 @@ const uploadNamed = async (values) => {
     //     return('fail')
     //   });
     try {
-        const response = await axios.post('http://127.0.0.1:8000/query_result', {
+        const response = await axios.post('http://35.229.185.178:8000/query_result', {
             Reporter: Reporter,
             Mail: Mail,
             Person: Person,
@@ -83,7 +83,7 @@ const uploadAnonymous = async (values) => {
     //     return('fail')
     //   });
     try {
-      const response = await axios.post('http://127.0.0.1:8000/query_result', {
+      const response = await axios.post('http://35.229.185.178:8000/query_result', {
           Reporter: Reporter,
           Mail: Mail,
           Person: Person,

@@ -20,7 +20,7 @@ const uploadSearch = async (values) => {
     }
     
     try {
-        const response = await axios.post('http://127.0.0.1:8000/query_search', {
+        const response = await axios.post('http://35.229.185.178:8000/query_search', {
             Mail: Mail,
             Person: Person,
             StartDate: StartDate,
