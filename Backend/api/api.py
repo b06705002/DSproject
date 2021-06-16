@@ -61,14 +61,14 @@ def query_search():
     Person_Query = ""
     Mail_Query = ""
 
-    # print("A" + Type + "A")
+    print(post_data)
 
     if Type == "none":
         Type_Query = " type IS NOT NULL"
     else:
         Type_Query = " type = \'" + Type + "\'"
 
-    if StartDate is not "":
+    if StartDate != "":
         StartDate = StartDate[:12] + "00:00:00"
         EndDate = EndDate[:12] + "23:59:59"
         START = datetime.strptime(StartDate, '%b %d %Y %H:%M:%S').strftime('%Y-%m-%d %H:%M:%S')
@@ -76,25 +76,29 @@ def query_search():
 
         Date_Query = " AND date BETWEEN \'" + START + "\' AND \'" + END + "\'" 
 
-    if Person is not "":
+    if Person != "":
         Person_Query = " AND person = \'" + Person + "\'"
 
-    if Mail is not "":
+    if Mail != "":
         Mail_Query = " AND reporter_email = \'" + Mail + "\'" 
 
 
     cnx = mysql.connector.connect(user='root', password='123456', host='35.229.151.61', database='reports')
     cursor = cnx.cursor(buffered=True)
-    sql = "SELECT * FROM `report` WHERE" + Type_Query + Date_Query + Person_Query + Mail_Query
+    sql_command = "SELECT * FROM report WHERE" + Type_Query + Date_Query + Person_Query + Mail_Query
+    # sql_command = "SELECT * FROM `report` where person = \'a\'"
 
-    # print(sql)
+    print(sql_command)
     try:
-        cursor.execute(sql)
+        cursor.execute(sql_command)
         cnx.commit()
         result = cursor.fetchall()
 
         row_list = []
+        # print(len(result))
         for row in result:
+            # print(row)
+            
             ele_row = {
                 "Reporter" : row[0],
                 "Email" : row[1],
@@ -105,7 +109,7 @@ def query_search():
                 "Date": row[6]
             }
             row_list.append(ele_row)
-
+        # print("DONE")
 
 
         message = {'status': 'Success'}
@@ -116,8 +120,8 @@ def query_search():
         return None
 
 
-    message = {'status': 'Success'}
-    return jsonify(message)
+    # message = {'status': 'Success'}
+    # return jsonify(message)
 
 
 
